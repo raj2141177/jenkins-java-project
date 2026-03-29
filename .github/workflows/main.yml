@@ -53,13 +53,13 @@ jobs:
           aws-region: us-east-1
 
       - name: Upload to s3
-        run: aws s3 cp /opt/target/*.war s3://${{vars.S3_BUCKET_NAME}}/backup
+        run: aws s3 cp /opt/target/*.war s3://jenkins-netflix-project/backup
 
       - name: Download WAR from S3
         uses: joutvhu/download-s3@v1
         with:
           aws_region: us-east-1
-          aws_bucket: ${{ vars.S3_BUCKET_NAME }}
+          aws_bucket: jenkins-netflix-project 
           source: backup/*.war
           target: /opt/target
 
