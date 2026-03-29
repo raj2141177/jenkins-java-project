@@ -68,6 +68,21 @@ jobs:
  
       - name: deploying to tomcat
         run: curl -u admin:admin --upload-file /opt/target/*.war "http://100.49.239.218:8080/manager/text/deploy?path=/NETFLIX&update=true"
+
+      - name: Slack Notification (Success)
+        if: success()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"✅ Deployment Successful 🚀"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Slack Notification (Failure)
+        if: failure()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"❌ Deployment Failed 💥"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+              
             
 
     
