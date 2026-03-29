@@ -52,13 +52,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Debug S3 command
-        run: |
-          echo "RAW COMMAND:"
-          echo aws s3 cp /opt/target/*.war s3://jenkins-netflix-project/backup/
-    
-          echo "FILES:"
-          ls -lah /opt/target
+      - name: Upload to s3
+        run:  aws s3 cp /opt/target/*.war s3://jenkins-netflix-project/backup/
     
       - name: Download WAR from S3
         uses: joutvhu/download-s3@v1
