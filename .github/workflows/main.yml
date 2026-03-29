@@ -67,7 +67,7 @@ jobs:
         run: ls -l /opt/target
  
       - name: deploying to tomcat
-        run: curl -u admin:admin --upload-file /opt/target/*.war "http://100.49.239.218:8080/manager/text/deploy?path=/myapp&update=true"
+        run: curl -u admin:admin --upload-file /opt/target/*.war "http://100.49.239.218:8080/manager/text/deploy?path=/NETFLIX&update=true"
             
 
     
